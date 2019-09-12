@@ -49,7 +49,8 @@ public class FlutterTrtcPlugin implements MethodCallHandler{
   private static final String ARG_IS_CUSTOM_VIDEO_CAPTURE = "is_custom_video_capture";
   /**视频文件路径.*/
   private static final String ARG_CUSTOM_VIDEO_URI = "custom_video_uri";
-
+  /**是否开发模式.*/
+  private static final String ARG_DEV_MODE = "dev_mode";
   static MethodChannel channel;
 
   private Activity mActivity;
@@ -87,6 +88,7 @@ public class FlutterTrtcPlugin implements MethodCallHandler{
         Integer sceneType = call.argument(ARG_SCENE_TYPE);
         Boolean isCustomVideoCapture = call.argument(ARG_IS_CUSTOM_VIDEO_CAPTURE);
         String customVideoUri = call.argument(ARG_CUSTOM_VIDEO_URI);
+        Boolean devMode = call.argument(ARG_DEV_MODE);
         Preconditions.checkArgument(appId != null && appId > 0, "无效的APP ID.");
         Preconditions.checkArgument(!TextUtils.isEmpty(userId), "无效的用户ID.");
         Preconditions.checkArgument(!TextUtils.isEmpty(userSig), "无效的签名信息.");
@@ -108,6 +110,7 @@ public class FlutterTrtcPlugin implements MethodCallHandler{
         if (TextUtils.isEmpty(customVideoUri)){
           isCustomVideoCapture = false;
         }
+        Preconditions.checkArgument(devMode != null, "无效的开发模式参数.");
         Intent intent = new Intent(mActivity, TRTCMainActivity.class);
         intent.putExtra(TRTCMainActivity.KEY_SDK_APP_ID, appId);
         intent.putExtra(TRTCMainActivity.KEY_USER_SIG,   userSig);
@@ -117,6 +120,7 @@ public class FlutterTrtcPlugin implements MethodCallHandler{
         intent.putExtra(TRTCMainActivity.KEY_ROLE, userRole);
         intent.putExtra(TRTCMainActivity.KEY_CUSTOM_CAPTURE, isCustomVideoCapture);
         intent.putExtra(TRTCMainActivity.KEY_VIDEO_FILE_PATH, customVideoUri);
+        intent.putExtra(TRTCMainActivity.KEY_DEV_MODE, devMode);
         mActivity.startActivity(intent);
         result.success(null);
       }catch (IllegalArgumentException e){

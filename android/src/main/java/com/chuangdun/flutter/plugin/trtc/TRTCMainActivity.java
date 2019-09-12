@@ -93,7 +93,7 @@ public class TRTCMainActivity extends Activity implements View.OnClickListener, 
     public static final String                  KEY_ROLE            = "role";
     public static final String                  KEY_CUSTOM_CAPTURE  = "custom_capture";
     public static final String                  KEY_VIDEO_FILE_PATH = "file_path";
-
+    public static final String KEY_DEV_MODE = "dev_mode";
     /**
      * 【关键】TRTC SDK 组件
      */
@@ -101,6 +101,9 @@ public class TRTCMainActivity extends Activity implements View.OnClickListener, 
     private TRTCCloud mTRTCCloud;                 // SDK 核心类
     private TRTCCloudDef.TRTCParams             mTRTCParams;                // 进房参数
     private int                                 mAppScene;                  // 推流模式，文件头第三点注释
+
+    /**是否为开发模式.*/
+    private boolean devMode;
 
     /**
      * 控件布局相关
@@ -172,7 +175,7 @@ public class TRTCMainActivity extends Activity implements View.OnClickListener, 
         String userSig = intent.getStringExtra(KEY_USER_SIG);
         int role = intent.getIntExtra(KEY_ROLE, TRTCCloudDef.TRTCRoleAnchor);
         mIsCustomCaptureAndRender = intent.getBooleanExtra(KEY_CUSTOM_CAPTURE, false);
-
+        devMode = intent.getBooleanExtra(KEY_DEV_MODE, false);
 //        // 若您的项目有纯音频的旁路直播需求，请配置参数。
 //        // 配置该参数后，音频达到服务器，即开始自动旁路；
 //        // 否则无此参数，旁路在收到第一个视频帧之前，会将收到的音频包丢弃。
@@ -227,9 +230,15 @@ public class TRTCMainActivity extends Activity implements View.OnClickListener, 
         mIvEnableVideo.setOnClickListener(this);
         mIvEnableAudio = findViewById(R.id.trtc_iv_mic);
         mIvEnableAudio.setOnClickListener(this);
-        findViewById(R.id.trtc_iv_log).setOnClickListener(this);
-        findViewById(R.id.trtc_iv_setting).setOnClickListener(this);
-        findViewById(R.id.trtc_iv_more).setOnClickListener(this);
+        if (devMode){
+            findViewById(R.id.trtc_iv_log).setOnClickListener(this);
+            findViewById(R.id.trtc_iv_setting).setOnClickListener(this);
+            findViewById(R.id.trtc_iv_more).setOnClickListener(this);
+        }else {
+            findViewById(R.id.trtc_iv_log).setVisibility(View.GONE);
+            findViewById(R.id.trtc_iv_setting).setVisibility(View.GONE);
+            findViewById(R.id.trtc_iv_more).setVisibility(View.GONE);
+        }
         findViewById(R.id.trtc_ib_back).setOnClickListener(this);
         findViewById(R.id.trtc_btn_sure).setOnClickListener(this);
         findViewById(R.id.trtc_btn_cancel).setOnClickListener(this);

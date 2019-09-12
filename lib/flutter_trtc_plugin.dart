@@ -241,7 +241,8 @@ class FlutterTrtcPlugin {
       int scene = TRTCCloudDef.TRTC_APP_SCENE_VIDEOCALL,
       int userRole = TRTCCloudDef.TRTCRoleAnchor,
       bool isCustomVideoCapture = false,
-      String customVideoUri}) async {
+      String customVideoUri,
+      bool devMode = false}) async {
     assert(roomId != null && roomId > 0);
     assert(appId != null && appId > 0);
     assert(userId != null && userId.isNotEmpty);
@@ -257,7 +258,8 @@ class FlutterTrtcPlugin {
       'scene_type': scene,
       'user_role': userRole,
       'is_custom_video_capture': isCustomVideoCapture,
-      'custom_video_uri': customVideoUri
+      'custom_video_uri': customVideoUri,
+      'dev_mode': devMode
     };
     await _channel.invokeMethod('joinRoom', args);
   }
