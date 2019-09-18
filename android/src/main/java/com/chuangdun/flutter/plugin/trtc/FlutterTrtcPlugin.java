@@ -19,7 +19,9 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 import java.util.ArrayList;
 import java.util.List;
 
-/** FlutterTrtcPlugin */
+/**
+ * @author Wangliang. 腾讯TRTC插件.
+ */
 public class FlutterTrtcPlugin implements MethodCallHandler{
   private static final String TAG = "FlutterTrtcPlugin";
   private static final String CHANNEL_NAME = "flutter_trtc_plugin";
