@@ -13,23 +13,17 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final pluginReference = FlutterTrtcPlugin();
+  StreamSubscription<Map<String, dynamic>> _onErrorSubscription;
+  StreamSubscription<int> _onEnterSubscription;
+
   @override
   void initState() {
     super.initState();
-    pluginReference.onError.listen((Map<String, dynamic> error) async {
+    _onErrorSubscription = pluginReference.onError.listen((Map<String, dynamic> error) async {
       print("------------------------FLUTTER-TRTC-PLUGIN: onError:$error");
     });
-    pluginReference.onEnterRoom.listen((int delay) async {
+    _onEnterSubscription = pluginReference.onEnterRoom.listen((int delay) async {
       print("------------------------FLUTTER-TRTC-PLUGIN: onEnterRoom:$delay");
-    });
-    pluginReference.onExitRoom.listen((int reason) async {
-      print("------------------------FLUTTER-TRTC-PLUGIN: onExitRoom:$reason");
-    });
-    pluginReference.onUserEnter.listen((String userId) async {
-      print("------------------------FLUTTER-TRTC-PLUGIN: onUserEnter($userId)");
-    });
-    pluginReference.onUserExit.listen((Map<String, dynamic> result) async {
-      print("------------------------FLUTTER-TRTC-PLUGIN: onUserExit($result)");
     });
   }
 
@@ -37,8 +31,8 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      await pluginReference
-          .joinRoom(roomId: 1000001, appId: 0000000, userId: "11123", userSig: '''''');
+      await pluginReference.joinRoom(
+          devMode: false, roomId: 1000001, appId: 123456, userId: "11123", userSig: '');
     } on PlatformException {
       print("------------出错啦.");
     }
@@ -62,5 +56,12 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _onEnterSubscription?.cancel();
+    _onErrorSubscription?.cancel();
   }
 }

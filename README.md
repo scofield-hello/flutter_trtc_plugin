@@ -39,21 +39,37 @@ Future<void> join() async {
 
 3.事件监听
 ```dart
-pluginReference.onError.listen((Map<String, dynamic> error) async {
-      print("------------------------FLUTTER-TRTC-PLUGIN: onError:$error");
-});
-pluginReference.onEnterRoom.listen((int delay) async {
-  print("------------------------FLUTTER-TRTC-PLUGIN: onEnterRoom:$delay");
-});
-pluginReference.onExitRoom.listen((int reason) async {
-  print("------------------------FLUTTER-TRTC-PLUGIN: onExitRoom:$reason");
-});
-pluginReference.onUserEnter.listen((String userId) async {
-  print("------------------------FLUTTER-TRTC-PLUGIN: onUserEnter($userId)");
-});
-pluginReference.onUserExit.listen((Map<String, dynamic> result) async {
-  print("------------------------FLUTTER-TRTC-PLUGIN: onUserExit($result)");
-});
+StreamSubscription<Map<String, dynamic>> _onErrorSubscription;
+StreamSubscription<int> _onEnterSubscription;
+StreamSubscription<dynamic> ...;
+
+@override
+void initState() {
+  _onErrorSubscription = pluginReference.onError.listen((Map<String, dynamic> error) async {
+        print("------------------------FLUTTER-TRTC-PLUGIN: onError:$error");
+  });
+  _onEnterSubscription = pluginReference.onEnterRoom.listen((int delay) async {
+    print("------------------------FLUTTER-TRTC-PLUGIN: onEnterRoom:$delay");
+  });
+  pluginReference.onExitRoom.listen((int reason) async {
+    print("------------------------FLUTTER-TRTC-PLUGIN: onExitRoom:$reason");
+  });
+  pluginReference.onUserEnter.listen((String userId) async {
+    print("------------------------FLUTTER-TRTC-PLUGIN: onUserEnter($userId)");
+  });
+  pluginReference.onUserExit.listen((Map<String, dynamic> result) async {
+    print("------------------------FLUTTER-TRTC-PLUGIN: onUserExit($result)");
+  });
+}
+
+  @override
+  void dispose() {
+    super.dispose();
+    _onEnterSubscription?.cancel();
+    _onErrorSubscription?.cancel();
+    ...?.cancel();
+  }
+
 ```
 ...还有更多事件请查看 flutter_trtc_plugin.dart
 ```dart
