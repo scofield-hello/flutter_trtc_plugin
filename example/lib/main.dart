@@ -13,16 +13,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final pluginReference = FlutterTrtcPlugin();
-  StreamSubscription<Map<String, dynamic>> _onErrorSubscription;
-  StreamSubscription<int> _onEnterSubscription;
 
   @override
   void initState() {
     super.initState();
-    _onErrorSubscription = pluginReference.onError.listen((Map<String, dynamic> error) async {
+    pluginReference.onError.listen((Map<String, dynamic> error) async {
       print("------------------------FLUTTER-TRTC-PLUGIN: onError:$error");
     });
-    _onEnterSubscription = pluginReference.onEnterRoom.listen((int delay) async {
+    pluginReference.onEnterRoom.listen((int delay) async {
       print("------------------------FLUTTER-TRTC-PLUGIN: onEnterRoom:$delay");
     });
   }
@@ -67,7 +65,6 @@ S4qRSbmXRWVSoC1UY0lmLtg9QCtMLM2NzGsBB68xHw__''');
   @override
   void dispose() {
     super.dispose();
-    _onEnterSubscription?.cancel();
-    _onErrorSubscription?.cancel();
+    pluginReference.dispose();
   }
 }
