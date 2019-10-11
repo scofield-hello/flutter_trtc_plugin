@@ -26,15 +26,19 @@ android {
 
     defaultConfig {
         minSdkVersion 17
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
         disable 'InvalidPackage'
+        abortOnError false
     }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation('androidx.appcompat:appcompat:1.1.0') {
+        exclude group: 'androidx.fragment'
+        exclude group: 'androidx.cursoradapter'
+        exclude group: 'androidx.drawerlayout'
+    }
     implementation 'com.tencent.liteav:LiteAVSDK_TRTC:6.6.7551'
+    implementation "com.google.zxing:core:3.3.0"
 }

@@ -32,7 +32,13 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       await pluginReference.joinRoom(
-          devMode: false, roomId: 1000001, appId: 123456, userId: "11123", userSig: '');
+          devMode: false,
+          roomId: 1000001,
+          appId: 1400241682,
+          userId: "11123",
+          userSig: '''eJyrVgrxCdZLrSjILEpVsjI0NTU1MjAw0AGLlqUWKVkpGekZKEH4xSnZiQUFmSlAdSYGBkYmhmYW
+RhCZzJTUvJLMtEywBkNDQyNjmJbMdKBInmNeuXNIeHhFulOaZ6lbRXB*cmiSY5RLRHlOYbGjo0*G
+S4qRSbmXRWVSoC1UY0lmLtg9QCtMLM2NzGsBB68xHw__''');
     } on PlatformException {
       print("------------出错啦.");
     }
