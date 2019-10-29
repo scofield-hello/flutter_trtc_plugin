@@ -98,6 +98,7 @@ public class TRTCMainActivity extends Activity implements View.OnClickListener,
   public static final String KEY_VIDEO_FILE_PATH = "file_path";
   public static final String KEY_DEV_MODE = "dev_mode";
   private static final String TAG = "TRTCMainActivity";
+
   /**
    * 【关键】TRTC SDK 组件
    */
@@ -304,6 +305,7 @@ public class TRTCMainActivity extends Activity implements View.OnClickListener,
     findViewById(R.id.trtc_ib_back).setOnClickListener(this);
     findViewById(R.id.trtc_btn_sure).setOnClickListener(this);
     findViewById(R.id.trtc_btn_cancel).setOnClickListener(this);
+    findViewById(R.id.trtc_iv_switch_camera).setOnClickListener(this);
     mRlQRCode = findViewById(R.id.trtc_rl_main_qrcode);
     mIvQRCode = findViewById(R.id.trtc_iv_main_qrcode);
     mRlQRCode.setOnClickListener(this);
@@ -498,6 +500,10 @@ public class TRTCMainActivity extends Activity implements View.OnClickListener,
       mLogLevel = (mLogLevel + 1) % 3;
       ((ImageView) v).setImageResource((0 == mLogLevel) ? R.mipmap.log2 : R.mipmap.log);
       mTRTCCloud.showDebugView(mLogLevel);
+    } else if (id == R.id.trtc_iv_switch_camera) {
+      boolean cameraFront = !mMoreDialog.isCameraFrontSync(this);
+      mMoreDialog.updateCameraFront(this, cameraFront);
+      onSwitchCamera(cameraFront);
     } else if (id == R.id.trtc_iv_setting) {
       mSettingDialog.show();
     } else if (id == R.id.trtc_iv_more) {
