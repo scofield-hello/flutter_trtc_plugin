@@ -1,0 +1,28 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_trtc_plugin (0.0.1):
+    - Flutter
+    - TXLiteAVSDK_TRTC
+  - TXLiteAVSDK_TRTC (6.8.8000)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_trtc_plugin (from `.symlinks/plugins/flutter_trtc_plugin/ios`)
+  - TXLiteAVSDK_TRTC (from `http://pod-1252463788.cosgz.myqcloud.com/liteavsdkspec/TXLiteAVSDK_TRTC.podspec`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_trtc_plugin:
+    :path: ".symlinks/plugins/flutter_trtc_plugin/ios"
+  TXLiteAVSDK_TRTC:
+    :podspec: http://pod-1252463788.cosgz.myqcloud.com/liteavsdkspec/TXLiteAVSDK_TRTC.podspec
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_trtc_plugin: fab74b2df73104b94b868e4e01fd563a74462410
+  TXLiteAVSDK_TRTC: 0f1499f24318dd9087b324a6c0652ae7d197b3c7
+
+PODFILE CHECKSUM: 4c41c652f6b6b1e49fc69c07bb5375cb3c3a3cc3
+
+COCOAPODS: 1.8.4

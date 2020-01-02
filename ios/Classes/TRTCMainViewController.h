@@ -12,7 +12,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import <TXLiteAVSDK_Professional/TRTCCloud.h>
+#import <TXLiteAVSDK_TRTC/TRTCCloud.h>
 
 
 @interface TRTCMainViewController : UIViewController 
@@ -27,7 +27,9 @@
 @property (nonatomic, assign) BOOL enableAGC;
 @property (nonatomic, assign) BOOL enableANC;
 @property (nonatomic, assign) TRTCSystemVolumeType volumeType;
+@property (nonatomic) BOOL devMode;
 
+- (instancetype)initWithParams:(TRTCParams*)params appScene:(TRTCAppScene)scene enableCustomVideoCapture:(BOOL) enableCustomVideoCapture customVideoAsset:(AVAsset*) asset devMode:(BOOL)devMode;
 - (void)setLocalView:(UIView*)localView remoteViewDic:(NSMutableDictionary*)remoteViewDic;
 
 @end

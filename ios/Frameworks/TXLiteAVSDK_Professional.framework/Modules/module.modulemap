@@ -1,4 +1,0 @@
-module TXLiteAVSDK_Professional {
-    umbrella header "Headers/TXLiteAVSDK.h"
-    export *
-}

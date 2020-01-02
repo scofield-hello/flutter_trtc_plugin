@@ -7,7 +7,7 @@
 //
 
 #import "TestSendCustomVideoData.h"
-#import <TXLiteAVSDK_Professional/TXLiteAVSDK.h>
+#import <TXLiteAVSDK_TRTC/TXLiteAVSDK.h>
 #import "TRTCSettingViewController.h"
 
 @interface TestSendCustomVideoData ()

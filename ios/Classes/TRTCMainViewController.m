@@ -16,12 +16,12 @@
 #import "TRTCSettingViewController.h"
 #import "UIView+Additions.h"
 #import "ColorMacro.h"
-#import <TXLiteAVSDK_Professional/TRTCCloud.h>
-#import <TXLiteAVSDK_Professional/TRTCCloudDelegate.h>
+#import <TXLiteAVSDK_TRTC/TRTCCloud.h>
+#import <TXLiteAVSDK_TRTC/TRTCCloudDelegate.h>
 #import "TRTCVideoViewLayout.h"
 #import "TRTCVideoView.h"
 #import "TRTCMoreViewController.h"
-#import <TXLiteAVSDK_Professional/TRTCCloudDef.h>
+#import <TXLiteAVSDK_TRTC/TRTCCloudDef.h>
 #import "TestSendCustomVideoData.h"
 #import "TestRenderVideoFrame.h"
 #import "BeautySettingPanel.h"
@@ -93,6 +93,19 @@ typedef enum : NSUInteger {
 @end
 
 @implementation TRTCMainViewController
+
+# pragma mark init
+- (instancetype)initWithParams:(TRTCParams *)params appScene:(TRTCAppScene)scene enableCustomVideoCapture:(BOOL)enableCustomVideoCapture customVideoAsset:(AVAsset *)asset devMode:(BOOL)devMode{
+    self = [super init];
+    if (self) {
+        self.param = params;
+        self.appScene = scene;
+        self.devMode = devMode;
+        self.enableCustomVideoCapture = enableCustomVideoCapture;
+        self.customMediaAsset = asset;
+    }
+    return self;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -519,9 +532,9 @@ typedef enum : NSUInteger {
     [self startPreview];
     [_vBeauty resetValues];
     [_vBeauty trigglerValues];
-
-    [self toastTip:@"开始进房"];
-    
+    if(self.devMode){
+        [self toastTip:@"开始进房"];
+    }
     // 进房
     [_trtc enterRoom:self.param appScene:_appScene];
     
@@ -985,13 +998,13 @@ typedef enum : NSUInteger {
 - (void)onEnterRoom:(NSInteger)result {
     if (result >= 0) {
         NSString *msg = [NSString stringWithFormat:@"[%@]进房成功[%@]: elapsed[%ld]", _selfUserID, _roomID, (long)result];
-        [self toastTip:msg];
-        
+        if(self.devMode){
+              [self toastTip:msg];
+        }
         [self setRoomStatus:TRTC_ENTERED];
     }
     else {
         [self exitRoom];
-        
         NSString *msg = [NSString stringWithFormat:@"进房失败: [%ld]", (long)result];
         [self toastTip:msg];
     }

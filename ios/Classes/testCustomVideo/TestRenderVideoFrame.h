@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TXLiteAVSDK_Professional/TXLiteAVSDK.h>
+#import <TXLiteAVSDK_TRTC/TXLiteAVSDK.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TestRenderVideoFrame : NSObject<TRTCVideoRenderDelegate>

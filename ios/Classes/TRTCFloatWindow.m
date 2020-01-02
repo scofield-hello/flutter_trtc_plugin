@@ -9,7 +9,7 @@
 #import "TRTCFloatWindow.h"
 #import "TRTCVideoView.h"
 //#import "TXLiteAVSDK.h"
-#import <TXLiteAVSDK_Professional/TXLiteAVSDK.h>
+#import <TXLiteAVSDK_TRTC/TXLiteAVSDK.h>
 
 #import "TRTCMainViewController.h"
 

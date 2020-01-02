@@ -6,7 +6,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <TXLiteAVSDK_Professional/TRTCCloud.h>
+#import <TXLiteAVSDK_TRTC/TRTCCloud.h>
 @interface TRTCSettingsProperty : NSObject
 @property(nonatomic, assign)int resolution;
 @property(nonatomic, assign)int fps;

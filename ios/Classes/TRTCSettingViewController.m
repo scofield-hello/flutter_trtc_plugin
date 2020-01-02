@@ -9,7 +9,7 @@
 #import "UIView+Additions.h"
 #import "ColorMacro.h"
 //#import "TRTCCloudDef.h"
-#import <TXLiteAVSDK_Professional/TRTCCloudDef.h>
+#import <TXLiteAVSDK_TRTC/TRTCCloudDef.h>
 
 #define TRTC_SETTING_RESOLUTION @"TRTC_SETTING_RESOLUTION"
 #define TRTC_SETTING_FPS        @"TRTC_SETTING_FPS"
