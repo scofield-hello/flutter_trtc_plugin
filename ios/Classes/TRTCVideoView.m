@@ -80,7 +80,7 @@
             UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"VideoClosed"]];
             imageView.center = CGPointMake(_tipBgView.width / 2, _tipBgView.height / 2 - 20);
             UILabel* uidLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, imageView.bottom + 10, _tipBgView.width, 30)];
-            NSString* uidText = _userId;
+            NSString* uidText = @"";
             if (_type == VideoViewType_Local) {
                 uidText = [uidText stringByAppendingString:@"(您自己)"];
             }
