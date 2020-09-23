@@ -9,7 +9,6 @@
 #import "BeautySettingPanel.h"
 #import "PituMotionAddress.h"
 #import "TextCell.h"
-#import "AFNetworking.h"
 #ifdef PITU
 #import "ZipArchive.h"
 #endif
